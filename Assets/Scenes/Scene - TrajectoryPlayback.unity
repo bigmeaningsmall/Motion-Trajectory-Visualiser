@@ -1120,14 +1120,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3464,14 +3464,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5865,9 +5865,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7621,14 +7621,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9279,14 +9279,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10543,14 +10543,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphDisplay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11490,6 +11490,15 @@ MonoBehaviour:
   xPredictedVelocitySliderText: {fileID: 1247686446}
   yPredictedVelocitySliderText: {fileID: 714884235}
   zPredictedVelocitySliderText: {fileID: 1299417745}
+  buttonTarget: {fileID: 1777304752}
+  buttonPredicted: {fileID: 1089945266}
+  buttonX: {fileID: 670142601}
+  buttonY: {fileID: 1699463420}
+  buttonZ: {fileID: 1944939058}
+  buttonXYZ: {fileID: 874473730}
+  buttonXY: {fileID: 390784350}
+  buttonYZ: {fileID: 92927757}
+  buttonXZ: {fileID: 1011232856}
 --- !u!1 &1159132348
 GameObject:
   m_ObjectHideFlags: 0
@@ -14370,7 +14379,13 @@ MonoBehaviour:
     rgba: 4288320768
   UI_Selected:
     serializedVersion: 2
+    rgba: 4278231814
+  UI_SelectedTarget:
+    serializedVersion: 2
     rgba: 4279078906
+  UI_SelectedPredicted:
+    serializedVersion: 2
+    rgba: 4290773247
 --- !u!1 &1488787495
 GameObject:
   m_ObjectHideFlags: 0
@@ -15990,14 +16005,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16835,9 +16850,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphDisplay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18300,14 +18315,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012196773}
-        m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: DataType
+      - m_Target: {fileID: 1133436847}
+        m_TargetAssemblyTypeName: UI_ManagerTrajectoryDisplay, Assembly-CSharp
+        m_MethodName: ButtonGraphAxis
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

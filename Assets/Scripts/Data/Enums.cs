@@ -17,14 +17,14 @@ namespace Enums
         LoadedPredicted
     }
 
-    public enum GraphDisplay{
+    public enum Axis{
         X,
         Y,
         Z,
+        XYZ,
         XY,
         YZ,
-        XZ,
-        XYZ
+        XZ
     }
     
 }

@@ -12,7 +12,7 @@ public class GraphFeed : MonoBehaviour{
     private GraphChart graph;
 
     [Header("Signal Type")] 
-    public GraphDisplay axis = GraphDisplay.XYZ;
+    public Axis axis = Axis.XYZ;
     public bool showTarget = true;
     public bool showPredicted = true;
 
@@ -31,12 +31,17 @@ public class GraphFeed : MonoBehaviour{
     #region Event Subscriptions
 
     private void OnEnable(){
-        // UI_ManagerSettings.OnUpdateUI+= UI_ManagerOnUpdateUI;
         DataReader.OnTrajectoryEvent += DataReaderOnTrajectoryEvent;
+        UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryDisplay += UI_ManagerTrajectoryDisplayOnnUpdateTrajectoryDisplay;
+        UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryAxis += UI_ManagerTrajectoryDisplayOnUpdateTrajectoryAxis;
+        UI_ManagerSettings.OnUpdateUI += UI_ManagerSettingsOnUpdateUI;
     }
     private void OnDisable(){
         // UI_ManagerSettings.OnUpdateUI-= UI_ManagerOnUpdateUI;
         DataReader.OnTrajectoryEvent -= DataReaderOnTrajectoryEvent;
+        UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryDisplay -= UI_ManagerTrajectoryDisplayOnnUpdateTrajectoryDisplay;
+        UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryAxis -= UI_ManagerTrajectoryDisplayOnUpdateTrajectoryAxis;
+        UI_ManagerSettings.OnUpdateUI -= UI_ManagerSettingsOnUpdateUI;
     }
 
     private void DataReaderOnTrajectoryEvent(Trajectory trajectoryType, Vector3 trajectory){
@@ -51,6 +56,21 @@ public class GraphFeed : MonoBehaviour{
             }
         }
     }
+    private void UI_ManagerTrajectoryDisplayOnnUpdateTrajectoryDisplay(bool t, Trajectory trajectoryDisplay){
+        if (trajectoryDisplay == Trajectory.Target){
+            showTarget = t;
+        }
+        if (trajectoryDisplay == Trajectory.Predicted){
+            showPredicted = t;
+        }
+    }
+    private void UI_ManagerTrajectoryDisplayOnUpdateTrajectoryAxis(Axis axis){
+        this.axis = axis;
+    }
+    private void UI_ManagerSettingsOnUpdateUI(DataType datatType, float scale, Vector3 offsets){
+        multiplier = scale;
+    }
+    
     #endregion
     
     private void Awake(){
@@ -107,31 +127,31 @@ public class GraphFeed : MonoBehaviour{
 
         switch (axis)
         {
-            case GraphDisplay.X:
+            case Axis.X:
                 float x = trajectory.x;
                 t = x;
                 break;
-            case GraphDisplay.Y:
+            case Axis.Y:
                 float y = trajectory.y;
                 t = y;
                 break;
-            case GraphDisplay.Z:
+            case Axis.Z:
                 float z = trajectory.z;
                 t = z;
                 break;
-            case GraphDisplay.XY:
+            case Axis.XY:
                 float xy = (trajectory.x+trajectory.y)/2;
                 t = xy;
                 break;
-            case GraphDisplay.YZ:
+            case Axis.YZ:
                 float yz = (trajectory.y+trajectory.z)/2;
                 t = yz;
                 break;
-            case GraphDisplay.XZ:
+            case Axis.XZ:
                 float xz = (trajectory.x+trajectory.z)/2;
                 t = xz;
                 break;
-            case GraphDisplay.XYZ:
+            case Axis.XYZ:
                 float xyz = (trajectory.x+trajectory.y+trajectory.z)/3;
                 t = xyz;
                 break;

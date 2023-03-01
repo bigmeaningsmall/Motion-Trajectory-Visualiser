@@ -13,6 +13,8 @@ public class StaticData : MonoBehaviour
     [Header("COLOURS")] 
     public Color32 UI_Default;
     public Color32 UI_Selected;
+    public Color32 UI_SelectedTarget;
+    public Color32 UI_SelectedPredicted;
 
 //******************************
     void Awake(){
