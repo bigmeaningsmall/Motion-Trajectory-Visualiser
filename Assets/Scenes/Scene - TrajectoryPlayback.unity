@@ -752,7 +752,7 @@ MonoBehaviour:
   vRSpaceScale: 0.1
   maintainLabelSize: 0
   autoScrollHorizontally: 1
-  horizontalScrolling: 4
+  horizontalScrolling: 2
   autoScrollVertically: 0
   verticalScrolling: 0
   raycastTarget: 0
@@ -774,11 +774,11 @@ MonoBehaviour:
       m_Calls: []
   itemFormat: <?y>
   Data:
-    automaticVerticalViewGap: 1
+    automaticVerticalViewGap: 0.5
     automaticVerticallView: 1
     automaticcHorizontaViewGap: 0
     automaticHorizontalView: 0
-    horizontalViewSize: 6
+    horizontalViewSize: 8
     horizontalViewOrigin: 0
     verticalViewSize: 10
     verticalViewOrigin: 0
@@ -14373,7 +14373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d07e0042a3929447aacea471f9ec6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  versionNumber: v0.1.01
+  versionNumber: v0.1.03
   UI_Default:
     serializedVersion: 2
     rgba: 4288320768

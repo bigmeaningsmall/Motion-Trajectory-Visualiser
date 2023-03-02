@@ -24,7 +24,7 @@ public class GraphFeed : MonoBehaviour{
     public bool graphEnabled = true;
     public bool simulateGraph = false;
     private float multiplier = 1f;
-    private float interval = 0.05f;
+    private float interval = 0.02f;
     private float timer;
     private float hoz = 10;
 
@@ -120,6 +120,10 @@ public class GraphFeed : MonoBehaviour{
         }
         hoz += Time.deltaTime;
         // hoz = System.DateTime.Now;
+
+        if (Input.GetKeyDown(KeyCode.C)){
+            StartCoroutine(ClearAll(0.5f));
+        }
     }
 
     private float SetAxisValue(Vector3 trajectory){
