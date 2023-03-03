@@ -16,6 +16,9 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
 
     public Vector3 targetVelocity;
     public Vector3 predictedVelocity;
+
+    private float scale;
+    private Vector3 offsets;
     
     [Header("DATA DISPLAY UI")]
     public Slider xTargetVelocity;
@@ -44,13 +47,21 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
     public Image buttonYZ; 
     public Image buttonXZ;
     
-    
+    [Header("Graph Sliders")]
+    public Slider xAxisScale;
+    public Slider yAxisScale;
+    public TextMeshProUGUI xAxisScaleSliderText;
+    public TextMeshProUGUI yAxisScaleSliderText;
+
     #region Events
 
     public delegate void UpdateTrajectoryDisplay( bool t, Trajectory trajectoryDisplay);
     public static event UpdateTrajectoryDisplay OnUpdateTrajectoryDisplay;
     public delegate void UpdateTrajectoryAxis( Axis axis);
     public static event UpdateTrajectoryAxis OnUpdateTrajectoryAxis;
+    public delegate void UpdateGraphAxisScale( int x, int y);
+    public static event UpdateGraphAxisScale OnUpdateGraphAxisScale;
+    
 
     #endregion
 
@@ -66,6 +77,8 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
     }
     private void UI_ManagerOnUpdateUI(DataType dataType, float scale, Vector3 offsets){
         motionType = dataType;
+        this.scale = scale;
+        this.offsets = offsets;
     }
     private void DataReaderOnTrajectoryEvent(Trajectory trajectoryType, Vector3 trajectory){
         this.trajectoryType = trajectoryType;
@@ -93,6 +106,11 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
         // xPredictedVelocity.onValueChanged.AddListener(delegate {UpdateVelocityXYZ(); });
         // yPredictedVelocity.onValueChanged.AddListener(delegate {UpdateVelocityXYZ(); });
         // zPredictedVelocity.onValueChanged.AddListener(delegate {UpdateVelocityXYZ(); });
+        
+        xAxisScale.onValueChanged.AddListener(delegate {UpdateAxisScale(); });
+        yAxisScale.onValueChanged.AddListener(delegate {UpdateAxisScale(); });
+
+        UpdateAxisScale();
         
         ButtonGraphDisplay(1);
         ButtonGraphDisplay(2);
@@ -126,18 +144,26 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
     }
 
     public void UpdateVelocityXYZ(){
-        xTargetVelocity.value = targetVelocity.x;
-        yTargetVelocity.value = targetVelocity.y;
-        zTargetVelocity.value = targetVelocity.z;
-        xPredictedVelocity.value = predictedVelocity.x;
-        yPredictedVelocity.value = predictedVelocity.y;
-        zPredictedVelocity.value = predictedVelocity.z;
-        xTargetVelocitySliderText.text = xTargetVelocity.value.ToString("f2");
-        yTargetVelocitySliderText.text = yTargetVelocity.value.ToString("f2");
-        zTargetVelocitySliderText.text = zTargetVelocity.value.ToString("f2");
-        xPredictedVelocitySliderText.text = xPredictedVelocity.value.ToString("f2");
-        yPredictedVelocitySliderText.text = yPredictedVelocity.value.ToString("f2");
-        zPredictedVelocitySliderText.text = zPredictedVelocity.value.ToString("f2");
+        xTargetVelocity.value = targetVelocity.x * scale;
+        yTargetVelocity.value = targetVelocity.y * scale;
+        zTargetVelocity.value = targetVelocity.z * scale;
+        xPredictedVelocity.value = predictedVelocity.x * scale;
+        yPredictedVelocity.value = predictedVelocity.y * scale;
+        zPredictedVelocity.value = predictedVelocity.z * scale;
+        xTargetVelocitySliderText.text = (xTargetVelocity.value * scale).ToString("f2");
+        yTargetVelocitySliderText.text = (yTargetVelocity.value * scale).ToString("f2");
+        zTargetVelocitySliderText.text = (zTargetVelocity.value * scale).ToString("f2");
+        xPredictedVelocitySliderText.text = (xPredictedVelocity.value * scale).ToString("f2");
+        yPredictedVelocitySliderText.text = (yPredictedVelocity.value * scale).ToString("f2");
+        zPredictedVelocitySliderText.text = (zPredictedVelocity.value * scale).ToString("f2");
+    }
+
+    public void UpdateAxisScale(){
+        if (OnUpdateGraphAxisScale != null){
+            OnUpdateGraphAxisScale(Mathf.RoundToInt(xAxisScale.value), Mathf.RoundToInt(yAxisScale.value));
+        }
+        xAxisScaleSliderText.text = Mathf.RoundToInt(xAxisScale.value).ToString();
+        yAxisScaleSliderText.text = Mathf.RoundToInt(yAxisScale.value).ToString();
     }
 
     #region Graph Buttons

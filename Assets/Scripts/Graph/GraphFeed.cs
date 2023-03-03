@@ -34,6 +34,7 @@ public class GraphFeed : MonoBehaviour{
         DataReader.OnTrajectoryEvent += DataReaderOnTrajectoryEvent;
         UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryDisplay += UI_ManagerTrajectoryDisplayOnnUpdateTrajectoryDisplay;
         UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryAxis += UI_ManagerTrajectoryDisplayOnUpdateTrajectoryAxis;
+        UI_ManagerTrajectoryDisplay.OnUpdateGraphAxisScale+= UI_ManagerTrajectoryDisplayOnUpdateGraphAxisScale;
         UI_ManagerSettings.OnUpdateUI += UI_ManagerSettingsOnUpdateUI;
     }
     private void OnDisable(){
@@ -41,6 +42,7 @@ public class GraphFeed : MonoBehaviour{
         DataReader.OnTrajectoryEvent -= DataReaderOnTrajectoryEvent;
         UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryDisplay -= UI_ManagerTrajectoryDisplayOnnUpdateTrajectoryDisplay;
         UI_ManagerTrajectoryDisplay.OnUpdateTrajectoryAxis -= UI_ManagerTrajectoryDisplayOnUpdateTrajectoryAxis;
+        UI_ManagerTrajectoryDisplay.OnUpdateGraphAxisScale -= UI_ManagerTrajectoryDisplayOnUpdateGraphAxisScale;
         UI_ManagerSettings.OnUpdateUI -= UI_ManagerSettingsOnUpdateUI;
     }
 
@@ -67,7 +69,12 @@ public class GraphFeed : MonoBehaviour{
     private void UI_ManagerTrajectoryDisplayOnUpdateTrajectoryAxis(Axis axis){
         this.axis = axis;
     }
-    private void UI_ManagerSettingsOnUpdateUI(DataType datatType, float scale, Vector3 offsets){
+    private void UI_ManagerTrajectoryDisplayOnUpdateGraphAxisScale(int x, int y){
+        //Debug.Log(graph.HorizontalValueToStringMap.Values.ToString());
+        graph.HorizontalScrolling = x;
+    }
+    private void UI_ManagerSettingsOnUpdateUI(DataType 
+        datatType, float scale, Vector3 offsets){
         multiplier = scale;
     }
     
