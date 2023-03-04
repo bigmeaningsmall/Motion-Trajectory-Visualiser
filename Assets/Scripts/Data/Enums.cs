@@ -26,5 +26,12 @@ namespace Enums
         YZ,
         XZ
     }
+
+    public enum Effector{
+        Hand,
+        Foot,
+        Head,
+        Generic
+    }
     
 }

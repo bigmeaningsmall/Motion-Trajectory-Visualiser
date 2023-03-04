@@ -7,6 +7,9 @@ TagManager:
   - TargetObject
   - PredictedObject
   - Label
+  - Trail
+  - TrajectorySphere
+  - EndEffector
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Target
+  - Predicted
   - 
   - 
   - 

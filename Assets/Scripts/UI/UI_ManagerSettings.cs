@@ -35,6 +35,22 @@ public class UI_ManagerSettings : MonoBehaviour{
     public TextMeshProUGUI ySliderText;
     public TextMeshProUGUI zSliderText;
     
+    [Header("SETTINGS MENU UI - Settings Buttons")]
+    public Image btnTarget; private bool isOnTarget;
+    public Image btnPredicted; private bool isOnPredicted;
+    public Image btnBiped; private bool isOnBiped;
+    public Image btnHand; private bool isOnHand;
+    public Image btnSpheres; private bool isOnSpheres;
+    public Image btnScatterplot; private bool isOnScatterPlot;
+    
+    public Image btnHandIK; private bool isOnHandIK;
+    public Image btnFootIK; private bool isOnFootIK;
+    
+    public Image btnLabels; private bool isOnLabels;
+    public Image btnEndEffectors; private bool isOnEndEffectors;
+    public Image btnTrails; private bool isOnTrails;
+    public Image btnEnvironment; private bool isOnEnvironment;
+    
     //logic
     [Header("SETTINGS Logic")]
     public DataType dataType = Enums.DataType.Velocity;
@@ -97,7 +113,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     private IEnumerator LateStart(){
         yield return new WaitForEndOfFrame();
         SetReadOnlyText();
-        DataType(GetDataType(dataType));
+        InitiliseButtons();
 
         BroadcastUI_Settings();
     }
@@ -135,7 +151,7 @@ public class UI_ManagerSettings : MonoBehaviour{
         }
     }
 
-    #region Inputs
+    #region Data Settings
 
     public void OpenBrowser(int browser){
         fileBrowser.OpenBrowser(browser);
@@ -176,12 +192,130 @@ public class UI_ManagerSettings : MonoBehaviour{
 
     #endregion
 
+    #region Visual buttons
+
+    //TODO --- Add an option to toggle target and prtdicted 
+    public void OnButtonTarget(){
+        isOnTarget = !isOnTarget;
+        btnTarget.color = GetButtonColour(isOnTarget);
+    }
+    public void OnButtonPredicted(){
+        isOnPredicted = !isOnPredicted;
+        btnPredicted.color = GetButtonColour(isOnPredicted);
+    }
+    
+    public void OnButtonBiped(){
+        isOnBiped = !isOnBiped;
+        btnBiped.color = GetButtonColour(isOnBiped);
+    }
+    public void OnButtonHand(){
+        isOnHand = !isOnHand;
+        btnHand.color = GetButtonColour(isOnHand);
+    }
+    public void OnButtonSpheres(){
+        isOnSpheres = !isOnSpheres;
+        btnSpheres.color = GetButtonColour(isOnSpheres);
+        ToggleRenderer("TrajectorySphere", isOnSpheres);
+    }
+    public void OnButtonScatterplot(){
+        isOnScatterPlot = !isOnScatterPlot;
+        btnScatterplot.color = GetButtonColour(isOnScatterPlot);
+    }
+
+    #endregion
+
+    #region IK buttons
+
+    public void OnButtonHandIK(){
+        isOnHandIK = !isOnHandIK;
+        btnHandIK.color = GetButtonColour(isOnHandIK);
+        ToggleEffector(Effector.Hand, isOnHandIK);
+    }
+    public void OnButtonFootIK(){
+        isOnFootIK = !isOnFootIK;
+        btnFootIK.color = GetButtonColour(isOnFootIK);
+        ToggleEffector(Effector.Foot, isOnFootIK);
+    }
+
+    #endregion
+
+    #region Display buttons
+
+    public void OnButtonLabels(){
+        isOnLabels = !isOnLabels;
+        btnLabels.color = GetButtonColour(isOnLabels);
+        ToggleRenderer("Label", isOnLabels);
+    }
+    public void OnButtonEndEffector(){
+        isOnEndEffectors = !isOnEndEffectors;
+        btnEndEffectors.color = GetButtonColour(isOnEndEffectors);
+        ToggleRenderer("EndEffector", isOnEndEffectors);
+    }
+    public void OnButtonTrails(){
+        isOnTrails = !isOnTrails;
+        btnTrails.color = GetButtonColour(isOnTrails);
+        ToggleRenderer("Trail", isOnTrails);
+    }
+    public void OnButtonEnvironment(){
+        isOnEnvironment = !isOnEnvironment;
+        btnEnvironment.color = GetButtonColour(isOnEnvironment);
+    }
+    
+    #endregion
+
+    #region Logic Functions
+
+    private void ToggleRenderer(string tag, bool t){
+        GameObject[] go = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in go){
+            obj.GetComponent<Renderer>().enabled = t;
+        }
+    }
+    private void ToggleEffector(Effector effector, bool t){
+        TagEffector[] effectors = FindObjectsOfType<TagEffector>();
+        foreach (TagEffector obj in effectors){
+            if (obj.gameObject.GetComponent<MotionTrajectory>()){
+                if (effector == Effector.Hand && obj.effectorTag == Effector.Hand){
+                    obj.GetComponent<MotionTrajectory>().enabled = t;
+                }
+                if (effector == Effector.Foot && obj.effectorTag == Effector.Foot){
+                    obj.GetComponent<MotionTrajectory>().enabled = t;
+                }
+                if (effector == Effector.Head && obj.effectorTag == Effector.Head){
+                    obj.GetComponent<MotionTrajectory>().enabled = t;
+                }
+                if (effector == Effector.Generic && obj.effectorTag == Effector.Generic){
+                    obj.GetComponent<MotionTrajectory>().enabled = t;
+                }
+            }
+        }
+    }
+
+    #endregion
+
+
     #region Initialise UI
 
     private void SetReadOnlyText(){
         versionNumDisplay.text = "Build: " + dao.VersionNumber;
         fileDisplayTarget.text = "<b><smallcaps>Load Target Trajectory</smallcaps></b>";
         fileDisplayPredicted.text = "<b><smallcaps>Load Predicted Trajectory</smallcaps></b>";
+    }
+
+    private void InitiliseButtons(){
+        //set the default datatype 
+        DataType(GetDataType(dataType));
+        //call the buttons that are on by default
+        OnButtonTarget();
+        OnButtonPredicted();
+        OnButtonBiped();
+        OnButtonSpheres();
+        
+        OnButtonHandIK();
+        
+        OnButtonLabels();
+        OnButtonEndEffector();
+        OnButtonTrails();
     }
 
     #endregion
@@ -223,5 +357,18 @@ public class UI_ManagerSettings : MonoBehaviour{
         return t;
     }
 
+    private Color GetButtonColour(bool t){
+        Color c;
+        Color d = StaticData.instance.UI_Default;
+        Color s = StaticData.instance.UI_Selected;
+        if (t){
+            c = s;
+        }
+        else{
+            c = d;
+        }
+        return c;
+    }
+    
     #endregion
 }
