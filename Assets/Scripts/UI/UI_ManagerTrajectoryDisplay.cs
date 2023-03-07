@@ -266,9 +266,21 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
     public void OnButtonToggleUI(){
         isOnUI = !isOnUI;
         btnUI_Toggle.color = GetButtonColourGrey(isOnUI);
+        
         StartCoroutine(ToggleUI(isOnUI));
+
+        Transform t = btnUI_Toggle.transform.GetChild(0).transform;
+        FlipIcon(t, isOnUI);
+        
+        t.gameObject.GetComponent<Image>().color = GetButtonColour(isOnUI);
     }
 
+    private void FlipIcon(Transform icon, bool flip){
+        Vector3 scale = icon.localScale;
+        scale.x = -scale.x;
+        icon.localScale = scale;
+        
+    }
     #endregion
 
 
