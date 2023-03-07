@@ -10,8 +10,7 @@ TagManager:
   - Trail
   - TrajectorySphere
   - EndEffector
-  - PathwayArmTarget
-  - PathwayLegTarget
+  - NeuralPathway
   layers:
   - Default
   - TransparentFX

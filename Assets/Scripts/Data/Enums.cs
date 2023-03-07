@@ -33,5 +33,14 @@ namespace Enums
         Head,
         Generic
     }
+
+    public enum Tags{
+        Null,
+        TrajectorySphereLabel,
+        EndEffectorHand,
+        EndEffectorFoot,
+        Target,
+        Predicted
+    }
     
 }

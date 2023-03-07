@@ -2116,8 +2116,8 @@ GameObject:
   - component: {fileID: 201434378}
   - component: {fileID: 201434377}
   m_Layer: 8
-  m_Name: Neuro Pathway Line Leg Predicted
-  m_TagString: Untagged
+  m_Name: Neural Pathway Line Leg Predicted
+  m_TagString: NeuralPathway
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3841,7 +3841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: End Effector
+  m_text: End Effectors
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c9318da567ae70649ad7261f2d731786, type: 2}
   m_sharedMaterial: {fileID: 5974774116562523377, guid: c9318da567ae70649ad7261f2d731786,
@@ -6116,7 +6116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 530554467}
   m_Layer: 0
-  m_Name: Neuro Pathway Line Renderers
+  m_Name: Neural Pathway Line Renderers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7355,8 +7355,8 @@ GameObject:
   - component: {fileID: 623511074}
   - component: {fileID: 623511073}
   m_Layer: 8
-  m_Name: Neuro Pathway Line Arm Predicted
-  m_TagString: Untagged
+  m_Name: Neural Pathway Line Arm Predicted
+  m_TagString: NeuralPathway
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8498,6 +8498,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4750991074962309800}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &736993740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736993728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143bf84ccb38fc84a98bbf02f7891305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 02000000
 --- !u!1 &738223763
 GameObject:
   m_ObjectHideFlags: 0
@@ -11889,7 +11902,7 @@ MonoBehaviour:
   btnScatterplot: {fileID: 1170370504}
   btnHandIK: {fileID: 1045886184}
   btnFootIK: {fileID: 1979271208}
-  btnNeuroPathways: {fileID: 0}
+  btnNeuralPathways: {fileID: 1173522642}
   btnLabels: {fileID: 610972999}
   btnEndEffectors: {fileID: 152062565}
   btnTrails: {fileID: 349979367}
@@ -13500,7 +13513,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145777841}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e7b9fd38058bcc4da489ee1a0bd8e88, type: 3}
   m_Name: 
@@ -13531,6 +13544,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectorTag: 1
+--- !u!114 &1145777852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145777841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143bf84ccb38fc84a98bbf02f7891305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 03000000
 --- !u!1 &1159132348
 GameObject:
   m_ObjectHideFlags: 0
@@ -13790,6 +13816,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1490576261960817041}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1162316358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162316346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143bf84ccb38fc84a98bbf02f7891305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 02000000
 --- !u!1 &1170370501
 GameObject:
   m_ObjectHideFlags: 0
@@ -13937,7 +13976,7 @@ GameObject:
   - component: {fileID: 1173522642}
   - component: {fileID: 1173522641}
   m_Layer: 5
-  m_Name: Button NeuroPathways
+  m_Name: Button NeuralPathways
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14010,7 +14049,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1012196773}
         m_TargetAssemblyTypeName: UI_ManagerSettings, Assembly-CSharp
-        m_MethodName: OnButtonNeuroPathways
+        m_MethodName: OnButtonNeuralPathways
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14104,7 +14143,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191554223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e7b9fd38058bcc4da489ee1a0bd8e88, type: 3}
   m_Name: 
@@ -14135,6 +14174,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectorTag: 1
+--- !u!114 &1191554234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191554223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143bf84ccb38fc84a98bbf02f7891305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 03000000
 --- !u!1 &1197945118
 GameObject:
   m_ObjectHideFlags: 0
@@ -16158,142 +16210,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1326162766
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1326162767}
-  - component: {fileID: 1326162769}
-  - component: {fileID: 1326162768}
-  m_Layer: 5
-  m_Name: Data Type Text (TMP) (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1326162767
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326162766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1858188652}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -91.600006, y: 0}
-  m_SizeDelta: {x: 283.9, y: 32}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1326162768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326162766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: End Effector
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8fe76578baba8ff4087e21b5bcd49a28, type: 2}
-  m_sharedMaterial: {fileID: 8781437371433648985, guid: 8fe76578baba8ff4087e21b5bcd49a28,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 33
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 8
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1326162769
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326162766}
-  m_CullTransparentMesh: 1
 --- !u!1 &1346069789
 GameObject:
   m_ObjectHideFlags: 0
@@ -21420,6 +21336,7 @@ GameObject:
   - component: {fileID: 1832921969}
   - component: {fileID: 1832921968}
   - component: {fileID: 1832921967}
+  - component: {fileID: 1832921971}
   m_Layer: 0
   m_Name: Predicted LabelText (TMP)
   m_TagString: Label
@@ -21615,6 +21532,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1832921971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832921965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143bf84ccb38fc84a98bbf02f7891305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 01000000
 --- !u!1 &1833564578
 GameObject:
   m_ObjectHideFlags: 0
@@ -21960,7 +21890,6 @@ RectTransform:
   - {fileID: 152062563}
   - {fileID: 349979365}
   - {fileID: 983835320}
-  - {fileID: 1326162767}
   m_Father: {fileID: 1012196769}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22347,8 +22276,8 @@ GameObject:
   - component: {fileID: 1914518697}
   - component: {fileID: 1914518696}
   m_Layer: 8
-  m_Name: Neuro Pathway Line Leg
-  m_TagString: Untagged
+  m_Name: Neural Pathway Line Leg
+  m_TagString: NeuralPathway
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22644,6 +22573,7 @@ GameObject:
   - component: {fileID: 1924952781}
   - component: {fileID: 1924952780}
   - component: {fileID: 1924952779}
+  - component: {fileID: 1924952783}
   m_Layer: 0
   m_Name: Target LabelText (TMP)
   m_TagString: Label
@@ -22839,6 +22769,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1924952783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924952777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143bf84ccb38fc84a98bbf02f7891305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 01000000
 --- !u!1 &1938261919
 GameObject:
   m_ObjectHideFlags: 0
@@ -24666,8 +24609,8 @@ GameObject:
   - component: {fileID: 2083797764}
   - component: {fileID: 2083797763}
   m_Layer: 8
-  m_Name: Neuro Pathway Line Arm
-  m_TagString: Untagged
+  m_Name: Neural Pathway Line Arm
+  m_TagString: NeuralPathway
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25186,7 +25129,7 @@ PrefabInstance:
     - target: {fileID: 1490576260787212767, guid: 3108084997c81e743925a02172097db0,
         type: 3}
       propertyPath: solvers.rightFoot.maintainRotationWeight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1490576260815320864, guid: 3108084997c81e743925a02172097db0,
         type: 3}
@@ -25303,6 +25246,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1145777849}
+    - targetCorrespondingSourceObject: {fileID: 1490576260815320864, guid: 3108084997c81e743925a02172097db0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1145777852}
     - targetCorrespondingSourceObject: {fileID: 1490576260134252793, guid: 3108084997c81e743925a02172097db0,
         type: 3}
       insertIndex: -1
@@ -25315,6 +25262,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1162316352}
+    - targetCorrespondingSourceObject: {fileID: 1490576261771306669, guid: 3108084997c81e743925a02172097db0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1162316358}
     - targetCorrespondingSourceObject: {fileID: 1490576261235766316, guid: 3108084997c81e743925a02172097db0,
         type: 3}
       insertIndex: -1
@@ -25554,6 +25505,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1191554231}
+    - targetCorrespondingSourceObject: {fileID: 4750991073938746887, guid: 6655d7951b45adb459ae35bc69df61f1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1191554234}
     - targetCorrespondingSourceObject: {fileID: 4750991073537210261, guid: 6655d7951b45adb459ae35bc69df61f1,
         type: 3}
       insertIndex: -1
@@ -25566,6 +25521,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 736993734}
+    - targetCorrespondingSourceObject: {fileID: 4750991073778615229, guid: 6655d7951b45adb459ae35bc69df61f1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 736993740}
     - targetCorrespondingSourceObject: {fileID: 4750991074429589371, guid: 6655d7951b45adb459ae35bc69df61f1,
         type: 3}
       insertIndex: -1

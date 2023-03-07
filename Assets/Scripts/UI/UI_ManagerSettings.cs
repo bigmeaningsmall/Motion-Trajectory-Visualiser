@@ -46,7 +46,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     public Image btnHandIK; private bool isOnHandIK;
     public Image btnFootIK; private bool isOnFootIK;
     
-    public Image btnNeuroPathways; private bool isOnNeuroPathways;
+    public Image btnNeuralPathways; private bool isOnNeuralPathways;
     public Image btnLabels; private bool isOnLabels;
     public Image btnEndEffectors; private bool isOnEndEffectors;
     public Image btnTrails; private bool isOnTrails;
@@ -217,6 +217,7 @@ public class UI_ManagerSettings : MonoBehaviour{
         isOnSpheres = !isOnSpheres;
         btnSpheres.color = GetButtonColour(isOnSpheres);
         ToggleRenderer("TrajectorySphere", isOnSpheres);
+        ToggleRenderer("Label", Tags.TrajectorySphereLabel, isOnSpheres,isOnLabels);
     }
     public void OnButtonScatterplot(){
         isOnScatterPlot = !isOnScatterPlot;
@@ -230,22 +231,22 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonHandIK(){
         isOnHandIK = !isOnHandIK;
         btnHandIK.color = GetButtonColour(isOnHandIK);
-        ToggleEffector(Effector.Hand, isOnHandIK);
+        ToggleEffectorIK(Effector.Hand, isOnHandIK);
     }
     public void OnButtonFootIK(){
         isOnFootIK = !isOnFootIK;
         btnFootIK.color = GetButtonColour(isOnFootIK);
-        ToggleEffector(Effector.Foot, isOnFootIK);
+        ToggleEffectorIK(Effector.Foot, isOnFootIK);
     }
 
     #endregion
 
     #region Display buttons
 
-    public void OnButtonNeuroPathways(){
-        isOnNeuroPathways = !isOnNeuroPathways;
-        btnNeuroPathways.color = GetButtonColour(isOnNeuroPathways);
-        ToggleRenderer("Label", isOnNeuroPathways);
+    public void OnButtonNeuralPathways(){
+        isOnNeuralPathways = !isOnNeuralPathways;
+        btnNeuralPathways.color = GetButtonColour(isOnNeuralPathways);
+        ToggleRenderer("NeuralPathway", isOnNeuralPathways);
     }
     public void OnButtonLabels(){
         isOnLabels = !isOnLabels;
@@ -255,7 +256,9 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonEndEffector(){
         isOnEndEffectors = !isOnEndEffectors;
         btnEndEffectors.color = GetButtonColour(isOnEndEffectors);
-        ToggleRenderer("EndEffector", isOnEndEffectors);
+        // ToggleRenderer("EndEffector", isOnEndEffectors);
+        ToggleRenderer("EndEffector", Tags.EndEffectorHand, isOnEndEffectors, isOnHandIK);
+        ToggleRenderer("EndEffector", Tags.EndEffectorFoot, isOnEndEffectors, isOnFootIK);
     }
     public void OnButtonTrails(){
         isOnTrails = !isOnTrails;
@@ -274,18 +277,49 @@ public class UI_ManagerSettings : MonoBehaviour{
     private void ToggleRenderer(string tag, bool t){
         GameObject[] go = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject obj in go){
-            obj.GetComponent<Renderer>().enabled = t;
+            if (obj.GetComponent<Renderer>()){
+                obj.GetComponent<Renderer>().enabled = t;
+            }
         }
     }
-    private void ToggleEffector(Effector effector, bool t){
+    private void ToggleRenderer(string tag, Tags tagEnum, bool t, bool refT){
+        GameObject[] go = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in go){
+            if (obj.GetComponent<TagEnums>()){
+                bool b = obj.GetComponent<TagEnums>().CheckForTag(tagEnum);
+                if (b && refT){
+                    if (obj.GetComponent<Renderer>()){
+                        obj.GetComponent<Renderer>().enabled = t;
+                    }
+                }
+            }
+        }
+    }
+    private void ToggleEffectorIK(Effector effector, bool t){
         TagEffector[] effectors = FindObjectsOfType<TagEffector>();
         foreach (TagEffector obj in effectors){
             if (obj.gameObject.GetComponent<MotionTrajectory>()){
                 if (effector == Effector.Hand && obj.effectorTag == Effector.Hand){
                     obj.GetComponent<MotionTrajectory>().enabled = t;
+                   
+                    if (t && isOnEndEffectors){
+                        ToggleRenderer("EndEffector", Tags.EndEffectorHand, true, true);
+                    }
+
+                    if (t && !isOnEndEffectors){
+                        ToggleRenderer("EndEffector", Tags.EndEffectorHand, false, true);
+                    }
                 }
                 if (effector == Effector.Foot && obj.effectorTag == Effector.Foot){
                     obj.GetComponent<MotionTrajectory>().enabled = t;
+                    
+                    if (t && isOnEndEffectors){
+                        ToggleRenderer("EndEffector", Tags.EndEffectorFoot, true, true);
+                    }
+
+                    if (t && !isOnEndEffectors){
+                        ToggleRenderer("EndEffector", Tags.EndEffectorFoot, false, true);
+                    }
                 }
                 if (effector == Effector.Head && obj.effectorTag == Effector.Head){
                     obj.GetComponent<MotionTrajectory>().enabled = t;
@@ -318,10 +352,15 @@ public class UI_ManagerSettings : MonoBehaviour{
         OnButtonSpheres();
         
         OnButtonHandIK();
+        OnButtonFootIK();
         
+        OnButtonNeuralPathways();
         OnButtonLabels();
         OnButtonEndEffector();
         OnButtonTrails();
+        
+        //turn off foot ik
+        // OnButtonFootIK();
     }
 
     #endregion
