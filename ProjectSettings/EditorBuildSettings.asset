@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Scene - TrajectoryPlayback.unity
-    guid: 96cbd0a0088aa254581837a7701181db
+    path: Assets/Scenes/Scene - MotionTrajectoryVisualiser.unity
+    guid: b9146c111e893124e8135398b08fab05
   m_configObjects: {}

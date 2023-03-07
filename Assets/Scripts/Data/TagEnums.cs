@@ -4,9 +4,9 @@ using UnityEngine;
 using Enums;
 
 public class TagEnums : MonoBehaviour{
-    public Tags[] tags;
+    public EnumTags[] tags;
 
-    public bool CheckForTag(Tags t){
+    public bool CheckForTag(EnumTags t){
         bool b = false;
         for (int i = 0; i < tags.Length; i++){
             if (tags[i] == t){

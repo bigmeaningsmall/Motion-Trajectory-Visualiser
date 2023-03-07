@@ -199,15 +199,20 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonTarget(){
         isOnTarget = !isOnTarget;
         btnTarget.color = GetButtonColour(isOnTarget);
+        ToggleLayer(EnumTags.Target,isOnTarget);
+        ToggleLineRenderer("NeuralPathway", EnumTags.Target, isOnTarget,isOnNeuralPathways);
     }
     public void OnButtonPredicted(){
         isOnPredicted = !isOnPredicted;
         btnPredicted.color = GetButtonColour(isOnPredicted);
+        ToggleLayer(EnumTags.Predicted,isOnPredicted);
+        ToggleLineRenderer("NeuralPathway", EnumTags.Predicted, isOnPredicted,isOnNeuralPathways);
     }
     
     public void OnButtonBiped(){
         isOnBiped = !isOnBiped;
         btnBiped.color = GetButtonColour(isOnBiped);
+        
     }
     public void OnButtonHand(){
         isOnHand = !isOnHand;
@@ -217,7 +222,7 @@ public class UI_ManagerSettings : MonoBehaviour{
         isOnSpheres = !isOnSpheres;
         btnSpheres.color = GetButtonColour(isOnSpheres);
         ToggleRenderer("TrajectorySphere", isOnSpheres);
-        ToggleRenderer("Label", Tags.TrajectorySphereLabel, isOnSpheres,isOnLabels);
+        ToggleRenderer("Label", EnumTags.TrajectorySphereLabel, isOnSpheres,isOnLabels);
     }
     public void OnButtonScatterplot(){
         isOnScatterPlot = !isOnScatterPlot;
@@ -231,12 +236,12 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonHandIK(){
         isOnHandIK = !isOnHandIK;
         btnHandIK.color = GetButtonColour(isOnHandIK);
-        ToggleEffectorIK(Effector.Hand, isOnHandIK);
+        ToggleEffectorIK(EnumTags.EndEffectorHand, isOnHandIK);
     }
     public void OnButtonFootIK(){
         isOnFootIK = !isOnFootIK;
         btnFootIK.color = GetButtonColour(isOnFootIK);
-        ToggleEffectorIK(Effector.Foot, isOnFootIK);
+        ToggleEffectorIK(EnumTags.EndEffectorFoot, isOnFootIK);
     }
 
     #endregion
@@ -246,7 +251,9 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonNeuralPathways(){
         isOnNeuralPathways = !isOnNeuralPathways;
         btnNeuralPathways.color = GetButtonColour(isOnNeuralPathways);
-        ToggleRenderer("NeuralPathway", isOnNeuralPathways);
+        // ToggleRenderer("NeuralPathway", isOnNeuralPathways);
+        ToggleRenderer("NeuralPathway", EnumTags.Target, isOnNeuralPathways, isOnTarget);
+        ToggleRenderer("NeuralPathway", EnumTags.Predicted, isOnNeuralPathways, isOnPredicted);
     }
     public void OnButtonLabels(){
         isOnLabels = !isOnLabels;
@@ -256,9 +263,8 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonEndEffector(){
         isOnEndEffectors = !isOnEndEffectors;
         btnEndEffectors.color = GetButtonColour(isOnEndEffectors);
-        // ToggleRenderer("EndEffector", isOnEndEffectors);
-        ToggleRenderer("EndEffector", Tags.EndEffectorHand, isOnEndEffectors, isOnHandIK);
-        ToggleRenderer("EndEffector", Tags.EndEffectorFoot, isOnEndEffectors, isOnFootIK);
+        ToggleRenderer("EndEffector", EnumTags.EndEffectorHand, isOnEndEffectors, isOnHandIK);
+        ToggleRenderer("EndEffector", EnumTags.EndEffectorFoot, isOnEndEffectors, isOnFootIK);
     }
     public void OnButtonTrails(){
         isOnTrails = !isOnTrails;
@@ -282,11 +288,11 @@ public class UI_ManagerSettings : MonoBehaviour{
             }
         }
     }
-    private void ToggleRenderer(string tag, Tags tagEnum, bool t, bool refT){
+    private void ToggleRenderer(string tag, EnumTags enumTagEnum, bool t, bool refT){
         GameObject[] go = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject obj in go){
             if (obj.GetComponent<TagEnums>()){
-                bool b = obj.GetComponent<TagEnums>().CheckForTag(tagEnum);
+                bool b = obj.GetComponent<TagEnums>().CheckForTag(enumTagEnum);
                 if (b && refT){
                     if (obj.GetComponent<Renderer>()){
                         obj.GetComponent<Renderer>().enabled = t;
@@ -295,39 +301,42 @@ public class UI_ManagerSettings : MonoBehaviour{
             }
         }
     }
-    private void ToggleEffectorIK(Effector effector, bool t){
-        TagEffector[] effectors = FindObjectsOfType<TagEffector>();
-        foreach (TagEffector obj in effectors){
+    private void ToggleLineRenderer(string tag, EnumTags enumTagEnum, bool t, bool refT){
+        GameObject[] go = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in go){
+            if (obj.GetComponent<TagEnums>()){
+                bool b = obj.GetComponent<TagEnums>().CheckForTag(enumTagEnum);
+                if (b && refT){
+                    if (obj.GetComponent<LineRenderer>()){
+                        obj.GetComponent<LineRenderer>().enabled = t;
+                    }
+                }
+            }
+        }
+    }
+    private void ToggleEffectorIK(EnumTags effectorTag, bool t){
+        TagEnums[] effectors = FindObjectsOfType<TagEnums>();
+        foreach (TagEnums obj in effectors){
             if (obj.gameObject.GetComponent<MotionTrajectory>()){
-                if (effector == Effector.Hand && obj.effectorTag == Effector.Hand){
-                    obj.GetComponent<MotionTrajectory>().enabled = t;
-                   
-                    if (t && isOnEndEffectors){
-                        ToggleRenderer("EndEffector", Tags.EndEffectorHand, true, true);
-                    }
-
-                    if (t && !isOnEndEffectors){
-                        ToggleRenderer("EndEffector", Tags.EndEffectorHand, false, true);
-                    }
-                }
-                if (effector == Effector.Foot && obj.effectorTag == Effector.Foot){
-                    obj.GetComponent<MotionTrajectory>().enabled = t;
-                    
-                    if (t && isOnEndEffectors){
-                        ToggleRenderer("EndEffector", Tags.EndEffectorFoot, true, true);
-                    }
-
-                    if (t && !isOnEndEffectors){
-                        ToggleRenderer("EndEffector", Tags.EndEffectorFoot, false, true);
-                    }
-                }
-                if (effector == Effector.Head && obj.effectorTag == Effector.Head){
+                if (effectorTag == EnumTags.EndEffectorHand && obj.CheckForTag(EnumTags.EndEffectorHand) == true){
                     obj.GetComponent<MotionTrajectory>().enabled = t;
                 }
-                if (effector == Effector.Generic && obj.effectorTag == Effector.Generic){
+                if (effectorTag == EnumTags.EndEffectorFoot && obj.CheckForTag(EnumTags.EndEffectorFoot) == true){
                     obj.GetComponent<MotionTrajectory>().enabled = t;
                 }
             }
+        }
+    }
+
+    private void ToggleLayer(EnumTags layer, bool t){
+        Camera cam = Camera.main;
+        int layerMask;
+        layerMask = 1 << LayerMask.NameToLayer(layer.ToString());
+        if (t){
+            cam.cullingMask |= layerMask;
+        }
+        else{
+            cam.cullingMask &= ~layerMask;
         }
     }
 
@@ -350,17 +359,22 @@ public class UI_ManagerSettings : MonoBehaviour{
         OnButtonPredicted();
         OnButtonBiped();
         OnButtonSpheres();
-        
-        OnButtonHandIK();
-        OnButtonFootIK();
-        
+
         OnButtonNeuralPathways();
         OnButtonLabels();
         OnButtonEndEffector();
         OnButtonTrails();
         
+        OnButtonHandIK();
+        OnButtonFootIK();
+        
+        OnButtonEndEffector();
+        
         //turn off foot ik
-        // OnButtonFootIK();
+        OnButtonFootIK();
+        
+        OnButtonEndEffector();
+        
     }
 
     #endregion

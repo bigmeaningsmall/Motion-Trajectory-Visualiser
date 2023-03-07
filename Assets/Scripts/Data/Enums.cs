@@ -27,18 +27,13 @@ namespace Enums
         XZ
     }
 
-    public enum Effector{
-        Hand,
-        Foot,
-        Head,
-        Generic
-    }
-
-    public enum Tags{
+    public enum EnumTags{
         Null,
         TrajectorySphereLabel,
         EndEffectorHand,
         EndEffectorFoot,
+        EndEffectorHead, //not used yet
+        EndEffectorGeneric, //not used yet or maybe not needed
         Target,
         Predicted
     }
