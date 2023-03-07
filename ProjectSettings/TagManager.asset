@@ -10,6 +10,8 @@ TagManager:
   - Trail
   - TrajectorySphere
   - EndEffector
+  - PathwayArmTarget
+  - PathwayLegTarget
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - UI
   - Target
   - Predicted
-  - 
+  - Overlay
   - 
   - 
   - 

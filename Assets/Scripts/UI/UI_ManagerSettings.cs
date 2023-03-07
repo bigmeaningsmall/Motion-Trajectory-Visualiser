@@ -46,6 +46,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     public Image btnHandIK; private bool isOnHandIK;
     public Image btnFootIK; private bool isOnFootIK;
     
+    public Image btnNeuroPathways; private bool isOnNeuroPathways;
     public Image btnLabels; private bool isOnLabels;
     public Image btnEndEffectors; private bool isOnEndEffectors;
     public Image btnTrails; private bool isOnTrails;
@@ -241,6 +242,11 @@ public class UI_ManagerSettings : MonoBehaviour{
 
     #region Display buttons
 
+    public void OnButtonNeuroPathways(){
+        isOnNeuroPathways = !isOnNeuroPathways;
+        btnNeuroPathways.color = GetButtonColour(isOnNeuroPathways);
+        ToggleRenderer("Label", isOnNeuroPathways);
+    }
     public void OnButtonLabels(){
         isOnLabels = !isOnLabels;
         btnLabels.color = GetButtonColour(isOnLabels);
