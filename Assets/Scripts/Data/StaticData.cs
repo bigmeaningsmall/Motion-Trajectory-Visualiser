@@ -12,9 +12,10 @@ public class StaticData : MonoBehaviour
     public string versionNumber;
 
     [Header("ANIMATION")] 
-    public float animationDuration = 0.25F;
-    public float buttonShakeAmount = 0.2F;
-    public float buttonShakeStrength = 0.25F;
+    public float animationDuration;
+    public float buttonShakeAmount;
+    public float buttonShakeStrength;
+    public int menuOffset;
     
     
     [Header("COLOURS")] 
@@ -22,6 +23,8 @@ public class StaticData : MonoBehaviour
     public Color32 UI_Selected;
     public Color32 UI_SelectedTarget;
     public Color32 UI_SelectedPredicted;
+    public Color32 UI_DefaultGrey;
+    public Color32 UI_SelectedGrey;
 
 //******************************
     void Awake(){

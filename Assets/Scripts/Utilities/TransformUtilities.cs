@@ -17,4 +17,27 @@ public class TransformUtilities : MonoBehaviour{
         return b.position - a.position;
     }
     
+    
+    public static Transform[] RemoveTransformsByTag(Transform[] transforms, string tag)
+    {
+        // create a new array to hold the filtered transforms
+        Transform[] filteredTransforms = new Transform[transforms.Length];
+        int index = 0;
+
+        // loop through each transform in the original array
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            // if the transform's tag does not match the tag to remove, add it to the filtered array
+            if (transforms[i].gameObject.tag != tag)
+            {
+                filteredTransforms[index] = transforms[i];
+                index++;
+            }
+        }
+
+        // resize the filtered array to remove any null elements
+        System.Array.Resize(ref filteredTransforms, index);
+
+        return filteredTransforms;
+    }
 }

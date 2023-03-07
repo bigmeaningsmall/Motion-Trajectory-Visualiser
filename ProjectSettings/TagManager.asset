@@ -13,6 +13,10 @@ TagManager:
   - NeuralPathway
   - Biped
   - Hand
+  - Foot
+  - Animate
+  - NoAnimate
+  - NoScale
   layers:
   - Default
   - TransparentFX

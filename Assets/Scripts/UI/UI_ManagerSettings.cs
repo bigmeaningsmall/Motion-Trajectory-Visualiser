@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Enums;
+using DG.Tweening;
+using Sirenix.Utilities;
+using Vector3 = UnityEngine.Vector3;
 
 public class UI_ManagerSettings : MonoBehaviour{
     
@@ -52,11 +55,16 @@ public class UI_ManagerSettings : MonoBehaviour{
     public Image btnTrails; private bool isOnTrails;
     public Image btnEnvironment; private bool isOnEnvironment;
     
+    public Image btnUI_Toggle; private bool isOnUI;
+    
     //logic
     [Header("SETTINGS Logic")]
     public DataType dataType = Enums.DataType.Velocity;
     private float scale = 1;
     private Vector3 offsets = Vector3.zero;
+    
+    private float onPosX;
+    private float offPosX;
     
     [Header("Read Only - Startup")]
     public TextMeshProUGUI versionNumDisplay;
@@ -107,6 +115,9 @@ public class UI_ManagerSettings : MonoBehaviour{
 
         OffsetXYZ();
             
+        onPosX = this.transform.position.x;
+        offPosX = onPosX-StaticData.instance.menuOffset;
+        
         // UI IS SET A FRAME AFTER START TO ALLOW ALL OBJECTS AND INSTANCES TO BE INITIALISED
         StartCoroutine(LateStart());
     }
@@ -121,9 +132,6 @@ public class UI_ManagerSettings : MonoBehaviour{
 
     #endregion
 
-
-    //temp bool
-    private bool menuActive = true;
     private void Update(){
         // xSliderText.text = xOffset.value.ToString("F2");
         // ySliderText.text = yOffset.value.ToString("F2");
@@ -131,24 +139,7 @@ public class UI_ManagerSettings : MonoBehaviour{
 
         //TEMP CONTROLS
         if (Input.GetKeyDown(KeyCode.Alpha1)){
-            if (menuActive){
-                // Get all child objects of this game object
-                foreach (Transform child in transform){
-                    // Deactivate each child object
-                    child.gameObject.SetActive(false);
-                }
-                GetComponent<Image>().enabled = false;
-                menuActive = false;
-            }
-            else{
-                // Get all child objects of this game object
-                foreach (Transform child in transform){
-                    // Deactivate each child object
-                    child.gameObject.SetActive(true);
-                }
-                GetComponent<Image>().enabled = true;
-                menuActive = true;
-            }
+            OnButtonToggleUI();
         }
     }
 
@@ -194,8 +185,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     #endregion
 
     #region Visual buttons
-
-    //TODO --- Add an option to toggle target and prtdicted 
+    
     public void OnButtonTarget(){
         isOnTarget = !isOnTarget;
         btnTarget.color = GetButtonColour(isOnTarget);
@@ -343,6 +333,15 @@ public class UI_ManagerSettings : MonoBehaviour{
 
     #endregion
 
+    #region Control Buttons
+
+    public void OnButtonToggleUI(){
+        isOnUI = !isOnUI;
+        btnUI_Toggle.color = GetButtonColourGrey(isOnUI);
+        StartCoroutine(ToggleUI(isOnUI));
+    }
+
+    #endregion
 
     #region Initialise UI
 
@@ -381,7 +380,8 @@ public class UI_ManagerSettings : MonoBehaviour{
         //ON
         //reenable the end effector
         OnButtonEndEffector();
-        
+
+        OnButtonToggleUI();
     }
 
     #endregion
@@ -398,6 +398,38 @@ public class UI_ManagerSettings : MonoBehaviour{
     
     #region UI Animation
 
+
+    
+    IEnumerator ToggleUI(bool t){
+        Transform[] childTransforms = GetComponentsInChildren<Transform>();
+        
+        childTransforms = TransformUtilities.RemoveTransformsByTag(childTransforms, "NoScale");
+        childTransforms = TransformUtilities.RemoveTransformsByTag(childTransforms, "NoAnimate");
+        
+        Vector3[] childPositions = new Vector3[childTransforms.Length];
+        
+        for (int i = 0; i < childTransforms.Length; i++){
+            childPositions[i] = childTransforms[i].position;
+        }
+
+        if (t){
+            this.transform.DOMoveX(onPosX, StaticData.instance.animationDuration*4);
+        }
+        else{
+            this.transform.DOMoveX(offPosX, StaticData.instance.animationDuration*4);
+        }
+        
+        for (int i = 0; i < childTransforms.Length; i++){
+            if (t){
+                childTransforms[i].DOScaleX(1, StaticData.instance.animationDuration);
+            }
+            else{
+                childTransforms[i].DOScaleX(0, StaticData.instance.animationDuration);
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    
     #endregion
 
     #region Returns
@@ -427,6 +459,18 @@ public class UI_ManagerSettings : MonoBehaviour{
         Color c;
         Color d = StaticData.instance.UI_Default;
         Color s = StaticData.instance.UI_Selected;
+        if (t){
+            c = s;
+        }
+        else{
+            c = d;
+        }
+        return c;
+    }
+    private Color GetButtonColourGrey(bool t){
+        Color c;
+        Color d = StaticData.instance.UI_DefaultGrey;
+        Color s = StaticData.instance.UI_SelectedGrey;
         if (t){
             c = s;
         }
