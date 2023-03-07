@@ -212,7 +212,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonBiped(){
         isOnBiped = !isOnBiped;
         btnBiped.color = GetButtonColour(isOnBiped);
-        
+        ToggleRenderer("Biped", isOnBiped);
     }
     public void OnButtonHand(){
         isOnHand = !isOnHand;

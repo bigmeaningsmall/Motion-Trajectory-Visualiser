@@ -6,8 +6,9 @@ using UnityEngine;
 public class StaticData : MonoBehaviour
 {
     public static StaticData instance;
-    
-    [ShowInInspector]
+
+    [ShowInInspector] 
+    public int fixedFrameRate = 60;
     public string versionNumber;
 
     [Header("COLOURS")] 

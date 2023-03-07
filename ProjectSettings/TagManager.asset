@@ -11,6 +11,8 @@ TagManager:
   - TrajectorySphere
   - EndEffector
   - NeuralPathway
+  - Biped
+  - Hand
   layers:
   - Default
   - TransparentFX

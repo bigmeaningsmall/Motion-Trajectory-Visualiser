@@ -35,7 +35,8 @@ namespace Enums
         EndEffectorHead, //not used yet
         EndEffectorGeneric, //not used yet or maybe not needed
         Target,
-        Predicted
+        Predicted,
+        Biped
     }
     
 }
