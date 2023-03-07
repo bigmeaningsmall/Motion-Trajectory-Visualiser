@@ -143,9 +143,9 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
 
     private void Update(){
         //TEMP CONTROLS
-        if (Input.GetKeyDown(KeyCode.Alpha2)){
-            OnButtonToggleUI();
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)){
+        //     OnButtonToggleUI();
+        // }
     }
 
     public void UpdateVelocityXYZ(){

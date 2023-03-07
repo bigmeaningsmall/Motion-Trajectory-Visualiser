@@ -25,6 +25,7 @@ public class StaticData : MonoBehaviour
     public Color32 UI_SelectedPredicted;
     public Color32 UI_DefaultGrey;
     public Color32 UI_SelectedGrey;
+    public Color32 UI_White = Color.white;
 
 //******************************
     void Awake(){

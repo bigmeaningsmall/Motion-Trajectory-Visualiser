@@ -32,10 +32,12 @@ public class MotionTrajectory : MonoBehaviour{
     private void OnEnable(){
         UI_ManagerSettings.OnUpdateUI+= UI_ManagerOnUpdateUI;
         DataReader.OnTrajectoryEvent += DataReaderOnTrajectoryEvent;
+        UI_ManagerControlPanel.OnResetEffectors += UI_ManagerControlPanelOnResetEffectors;
     }
     private void OnDisable(){
         UI_ManagerSettings.OnUpdateUI-= UI_ManagerOnUpdateUI;
         DataReader.OnTrajectoryEvent -= DataReaderOnTrajectoryEvent;
+        UI_ManagerControlPanel.OnResetEffectors -= UI_ManagerControlPanelOnResetEffectors;
     }
     private void UI_ManagerOnUpdateUI(DataType dataType, float scale, Vector3 offsets){
         motionType = dataType;
@@ -72,6 +74,16 @@ public class MotionTrajectory : MonoBehaviour{
         }
 
     }
+    private void UI_ManagerControlPanelOnResetEffectors(){
+        // enabled = false;
+        this.transform.position = initialPosition;
+        // StartCoroutine(ReEnableEffector());
+        // Debug.Log("Reset Effector");
+    }
+    // private IEnumerator ReEnableEffector(){
+    //     yield return new WaitForFixedUpdate();
+    //     enabled = true;
+    // }
     
     #endregion
     void Start(){
@@ -85,4 +97,7 @@ public class MotionTrajectory : MonoBehaviour{
         //     this.transform.position = Vector3.Lerp(this.transform.position, initialPosition, Time.deltaTime*2);
         // }
     }
+
+
+
 }

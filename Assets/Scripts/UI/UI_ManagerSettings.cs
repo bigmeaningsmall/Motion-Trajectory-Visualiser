@@ -138,9 +138,9 @@ public class UI_ManagerSettings : MonoBehaviour{
         // zSliderText.text = zOffset.value.ToString("F2");
 
         //TEMP CONTROLS
-        if (Input.GetKeyDown(KeyCode.Alpha1)){
-            OnButtonToggleUI();
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1)){
+        //     OnButtonToggleUI();
+        // }
     }
 
     #region Data Settings

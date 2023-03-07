@@ -612,6 +612,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 245702946}
+        m_TargetAssemblyTypeName: UI_ManagerControlPanel, Assembly-CSharp
+        m_MethodName: OnButtonExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &51423830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3703,8 +3715,9 @@ GameObject:
   - component: {fileID: 245702943}
   - component: {fileID: 245702945}
   - component: {fileID: 245702944}
+  - component: {fileID: 245702946}
   m_Layer: 5
-  m_Name: Control Panel
+  m_Name: UI Control Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3774,6 +3787,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245702942}
   m_CullTransparentMesh: 1
+--- !u!114 &245702946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245702942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415e5ddddf8c97149abb7f47b60e065e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_Canvas: {fileID: 300749765}
+  UI_Settings: {fileID: 1012196773}
+  UI_TrajectoryDisplay: {fileID: 1133436847}
+  btnStreaming: {fileID: 652511585}
+  btnResetEffector: {fileID: 1479955027}
+  btnPlay: {fileID: 1477601232}
+  btnStop: {fileID: 614570273}
+  btnExit: {fileID: 51423830}
 --- !u!1 &245731557
 GameObject:
   m_ObjectHideFlags: 0
@@ -8386,6 +8419,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 245702946}
+        m_TargetAssemblyTypeName: UI_ManagerControlPanel, Assembly-CSharp
+        m_MethodName: OnButtonStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &614570273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8691,6 +8736,18 @@ MonoBehaviour:
       - m_Target: {fileID: 652511583}
         m_TargetAssemblyTypeName: ButtonClickShaker, Assembly-CSharp
         m_MethodName: ButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 245702946}
+        m_TargetAssemblyTypeName: UI_ManagerControlPanel, Assembly-CSharp
+        m_MethodName: OnButtonStreaming
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13018,7 +13075,7 @@ GameObject:
   - component: {fileID: 1012196774}
   - component: {fileID: 1012196773}
   m_Layer: 5
-  m_Name: Settings Panel
+  m_Name: UI Settings Panel
   m_TagString: NoScale
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14372,7 +14429,7 @@ GameObject:
   - component: {fileID: 1133436845}
   - component: {fileID: 1133436847}
   m_Layer: 5
-  m_Name: Trajectory Display Panel
+  m_Name: UI Trajectory Display Panel
   m_TagString: NoScale
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18759,6 +18816,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 245702946}
+        m_TargetAssemblyTypeName: UI_ManagerControlPanel, Assembly-CSharp
+        m_MethodName: OnButtonPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1477601232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18906,6 +18975,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 245702946}
+        m_TargetAssemblyTypeName: UI_ManagerControlPanel, Assembly-CSharp
+        m_MethodName: OnButtonResetEffector
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1479955027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19027,6 +19108,9 @@ MonoBehaviour:
   UI_SelectedGrey:
     serializedVersion: 2
     rgba: 838860800
+  UI_White:
+    serializedVersion: 2
+    rgba: 4294967295
 --- !u!1 &1488787495
 GameObject:
   m_ObjectHideFlags: 0
@@ -27311,17 +27395,22 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Kinematic Motion
 
-        ''Target'''
+        ''Target Trajectory'''
       objectReference: {fileID: 0}
     - target: {fileID: 1490576261859524007, guid: 3108084997c81e743925a02172097db0,
         type: 3}
       propertyPath: m_fontSize
-      value: 1.15
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490576261859524007, guid: 3108084997c81e743925a02172097db0,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1490576261859524007, guid: 3108084997c81e743925a02172097db0,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 1.15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1495135061147087524, guid: 3108084997c81e743925a02172097db0,
         type: 3}
@@ -28019,17 +28108,22 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Neural-Signal Motion
 
-        ''Predicted'''
+        ''Predicted Trajectory'''''
       objectReference: {fileID: 0}
     - target: {fileID: 4750991073883454794, guid: 6655d7951b45adb459ae35bc69df61f1,
         type: 3}
       propertyPath: m_fontSize
-      value: 1.15
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4750991073883454794, guid: 6655d7951b45adb459ae35bc69df61f1,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4750991073883454794, guid: 6655d7951b45adb459ae35bc69df61f1,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 1.15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4750991073883454838, guid: 6655d7951b45adb459ae35bc69df61f1,
         type: 3}
