@@ -27,7 +27,8 @@ public class UI_ManagerControlPanel : MonoBehaviour{
     
     void Start()
     {
-        
+        //initialise buttonsa
+        OnButtonStop();
     }
 
     // Update is called once per frame
@@ -73,7 +74,7 @@ public class UI_ManagerControlPanel : MonoBehaviour{
         isOnStreaming = !isOnStreaming;
         Transform t = btnStreaming.transform.GetChild(0).transform;
         t.gameObject.GetComponent<Image>().color = GetButtonColour(isOnStreaming);
-        
+
     }
     public void OnButtonResetEffector(){
         isOnResetEffector = !isOnResetEffector;
@@ -88,13 +89,11 @@ public class UI_ManagerControlPanel : MonoBehaviour{
         isOnPlay = !isOnPlay;
         Transform t = btnPlay.transform.GetChild(0).transform;
         t.gameObject.GetComponent<Image>().color = GetButtonColour(isOnPlay);
-        
     }
     public void OnButtonStop(){
         isOnStop = !isOnStop;
-        Transform t = btnStop.transform.GetChild(0).transform;
-        t.gameObject.GetComponent<Image>().color = GetButtonColour(isOnStop);
-        
+        // Transform s = btnStop.transform.GetChild(0).transform;
+        // s.gameObject.GetComponent<Image>().color = GetButtonColour(isOnStop);
     }
     public void OnButtonExit(){
         isOnExit = !isOnExit;

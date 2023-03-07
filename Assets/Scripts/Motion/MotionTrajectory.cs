@@ -75,16 +75,9 @@ public class MotionTrajectory : MonoBehaviour{
 
     }
     private void UI_ManagerControlPanelOnResetEffectors(){
-        // enabled = false;
         this.transform.position = initialPosition;
-        // StartCoroutine(ReEnableEffector());
-        // Debug.Log("Reset Effector");
     }
-    // private IEnumerator ReEnableEffector(){
-    //     yield return new WaitForFixedUpdate();
-    //     enabled = true;
-    // }
-    
+
     #endregion
     void Start(){
         initialPosition = this.transform.position;
