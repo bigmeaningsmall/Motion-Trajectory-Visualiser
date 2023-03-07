@@ -217,6 +217,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonHand(){
         isOnHand = !isOnHand;
         btnHand.color = GetButtonColour(isOnHand);
+        ToggleRenderer("Hand", isOnHand);
     }
     public void OnButtonSpheres(){
         isOnSpheres = !isOnSpheres;
@@ -352,12 +353,14 @@ public class UI_ManagerSettings : MonoBehaviour{
     }
 
     private void InitiliseButtons(){
+        //ON
         //set the default datatype 
         DataType(GetDataType(dataType));
         //call the buttons that are on by default
         OnButtonTarget();
         OnButtonPredicted();
         OnButtonBiped();
+        OnButtonHand();
         OnButtonSpheres();
 
         OnButtonNeuralPathways();
@@ -370,9 +373,13 @@ public class UI_ManagerSettings : MonoBehaviour{
         
         OnButtonEndEffector();
         
-        //turn off foot ik
+        //OFF
+        //turn off foot ik and other buttons
         OnButtonFootIK();
+        OnButtonHand();
         
+        //ON
+        //reenable the end effector
         OnButtonEndEffector();
         
     }
