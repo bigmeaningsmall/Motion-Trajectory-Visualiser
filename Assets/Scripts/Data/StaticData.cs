@@ -15,6 +15,7 @@ public class StaticData : MonoBehaviour
     public float animationDuration;
     public float buttonShakeAmount;
     public float buttonShakeStrength;
+    public float cameraMoveOffset = 0.25f; //amount the camera can move each time hoz or vert per 
     public int menuOffset;
     
     
