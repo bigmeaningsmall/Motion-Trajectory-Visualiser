@@ -29,21 +29,10 @@ public class CameraLookSetter : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow)){
-            CameraUp();
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow)){
-            CameraDown();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)){
-            CameraLeft();
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow)){
-            CameraRight();
-        }
+
     }
 
-    private void CameraUp(){
+    public void CameraUp(){
         // +4
         if (vertIndex <= vertMoves){
             vertIndex++;
@@ -51,13 +40,13 @@ public class CameraLookSetter : MonoBehaviour{
         }
     }
     // -3
-    private void CameraDown(){
+    public void CameraDown(){
         if (vertIndex > -vertMoves){
             vertIndex--;
             lookTarget.DOMoveY(lookTarget.position.y-StaticData.instance.cameraMoveOffset, StaticData.instance.animationDuration * 10);
         }
     }
-    private void CameraLeft(){
+    public void CameraLeft(){
         // +6
         if (hozIndex < hozMoves*2){
             hozIndex++;
@@ -65,7 +54,7 @@ public class CameraLookSetter : MonoBehaviour{
         }
     }
     // -6
-    private void CameraRight(){
+    public void CameraRight(){
         if (hozIndex > -hozMoves*2){
             hozIndex--;
             lookTarget.DOMoveX(lookTarget.position.x-(StaticData.instance.cameraMoveOffset*2), StaticData.instance.animationDuration * 10);

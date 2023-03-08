@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveAroundObject : MonoBehaviour{
-    
+
+    [SerializeField] private bool freezeRotation;
+        
     [SerializeField] private float mouseSensitivity = 2.0f;
 
     [SerializeField] private Transform target;
@@ -24,14 +26,21 @@ public class MoveAroundObject : MonoBehaviour{
     private float currentDistance;
     private float desiredDistance;
 
+    private float mouseX;
+    private float mouseY;
+
     private void Start(){
         currentDistance = distanceFromTarget;
         desiredDistance = distanceFromTarget;
     }
 
     void Update(){
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        if (!freezeRotation){
+            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        }
+
         
         desiredDistance -= Input.GetAxis("Mouse ScrollWheel") * mouseSensitivity * 4;
         desiredDistance = Mathf.Clamp(desiredDistance, minDistance, maxDistance);
@@ -57,5 +66,9 @@ public class MoveAroundObject : MonoBehaviour{
         if (Input.GetMouseButtonDown(0)){
             
         }
+    }
+
+    public void OrbitFreezeToggle(){
+        freezeRotation = !freezeRotation;
     }
 }

@@ -6,10 +6,17 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UI_ManagerControlPanel : MonoBehaviour{
+    
+    [Header("SCRIPT COMPONENTS UI")]
     public Canvas UI_Canvas;
     public UI_ManagerSettings UI_Settings;
     public UI_ManagerTrajectoryDisplay UI_TrajectoryDisplay;
+    
+    [Header("SCRIPT COMPONENTS CAMERA")]
+    public MoveAroundObject cameraOrbit;
+    public CameraLookSetter cameraLookSetter;
 
+    [Header("CONTROL BUTTONS")]
     private bool isOnControlPanel = true;
     private bool isOnCanvas = true;
 
@@ -39,6 +46,9 @@ public class UI_ManagerControlPanel : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
+        #region Buttons
+
+        //buttons....
         if (Input.GetKeyDown(KeyCode.S)){
             OnButtonStreaming();
         }
@@ -59,6 +69,12 @@ public class UI_ManagerControlPanel : MonoBehaviour{
             OnButtonExit();
         }
 
+        #endregion
+
+
+        #region UI
+
+        //UI........
         if (Input.GetKeyDown(KeyCode.Alpha1)){
             UI_Settings.OnButtonToggleUI();
         }
@@ -78,6 +94,31 @@ public class UI_ManagerControlPanel : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Escape)){
             Application.Quit();
         }
+
+        #endregion
+
+        #region Camera
+
+        //CAMERA........
+        if (Input.GetKeyDown(KeyCode.F)){
+            cameraOrbit.OrbitFreezeToggle();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow)){
+            cameraLookSetter.CameraUp();
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow)){
+            cameraLookSetter.CameraDown();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)){
+            cameraLookSetter.CameraLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow)){
+            cameraLookSetter.CameraRight();
+        }
+
+        #endregion
+
     }
 
     #region Control Buttons

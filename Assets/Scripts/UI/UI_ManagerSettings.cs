@@ -116,7 +116,12 @@ public class UI_ManagerSettings : MonoBehaviour{
         OffsetXYZ();
             
         onPosX = this.transform.position.x;
-        offPosX = onPosX-StaticData.instance.menuOffset;
+        // offPosX = onPosX-StaticData.instance.menuOffset;
+        //FOR OFF SCREEN 1080
+        // offPosX = TransformUtilities.GetOffscreenXPosition(gameObject.GetComponent<RectTransform>(), "left")/2;
+        //FOR OFF SCREEN ANY BIG SIZE
+        offPosX = 1400;
+        
         
         // UI IS SET A FRAME AFTER START TO ALLOW ALL OBJECTS AND INSTANCES TO BE INITIALISED
         StartCoroutine(LateStart());
@@ -426,7 +431,7 @@ public class UI_ManagerSettings : MonoBehaviour{
             this.transform.DOMoveX(onPosX, StaticData.instance.animationDuration*4);
         }
         else{
-            this.transform.DOMoveX(offPosX, StaticData.instance.animationDuration*4);
+            this.transform.DOMoveX(onPosX-offPosX, StaticData.instance.animationDuration*4);
         }
         
         for (int i = 0; i < childTransforms.Length; i++){
@@ -489,6 +494,7 @@ public class UI_ManagerSettings : MonoBehaviour{
         }
         return c;
     }
+
     
     #endregion
 }

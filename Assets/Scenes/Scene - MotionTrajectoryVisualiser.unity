@@ -1323,7 +1323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &67435485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3839,6 +3839,8 @@ MonoBehaviour:
   UI_Canvas: {fileID: 300749765}
   UI_Settings: {fileID: 1012196773}
   UI_TrajectoryDisplay: {fileID: 1133436847}
+  cameraOrbit: {fileID: 1428099058}
+  cameraLookSetter: {fileID: 1428099060}
   btnStreaming: {fileID: 652511585}
   btnResetEffector: {fileID: 1479955027}
   btnPlay: {fileID: 1477601232}
@@ -4595,10 +4597,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 245702943}
   - {fileID: 1012196769}
   - {fileID: 2023222270}
   - {fileID: 1133436844}
-  - {fileID: 245702943}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10570,7 +10572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &738185664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14398,11 +14400,11 @@ RectTransform:
   m_Father: {fileID: 300749766}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -620, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 20, y: 0}
   m_SizeDelta: {x: 640, y: 1040}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1012196771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15746,11 +15748,11 @@ RectTransform:
   m_Father: {fileID: 300749766}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 620, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: 0}
   m_SizeDelta: {x: 640, y: 1040}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1133436845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19959,6 +19961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeadbb51beb60f646a3f5aa7d85f9236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freezeRotation: 0
   mouseSensitivity: 2
   target: {fileID: 1499097060}
   smoothTime: 0.5
@@ -20033,7 +20036,6 @@ MonoBehaviour:
   vertIndex: 0
   hozMoves: 3
   hozIndex: 0
-  lookOffset: 1
   initialPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1435659163
 GameObject:
@@ -20763,10 +20765,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixedFrameRate: 60
-  versionNumber: v0.2.05
+  versionNumber: v0.3.1
   animationDuration: 0.1
   buttonShakeAmount: 0.25
   buttonShakeStrength: 0.25
+  cameraMoveOffset: 0.25
   menuOffset: 660
   UI_Default:
     serializedVersion: 2

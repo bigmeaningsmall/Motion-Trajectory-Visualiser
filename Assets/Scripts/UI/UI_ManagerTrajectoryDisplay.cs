@@ -133,8 +133,9 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
         ButtonGraphAxis(4);
 
         onPosX = this.transform.position.x;
-        offPosX = onPosX+StaticData.instance.menuOffset;
-
+        offPosX = StaticData.instance.menuOffset*2;
+        
+        
         OnButtonToggleUI();
     }
 
@@ -302,7 +303,7 @@ public class UI_ManagerTrajectoryDisplay : MonoBehaviour{
             this.transform.DOMoveX(onPosX, StaticData.instance.animationDuration * 4);
         }
         else{
-            this.transform.DOMoveX(offPosX, StaticData.instance.animationDuration * 4);
+            this.transform.DOMoveX(onPosX+offPosX, StaticData.instance.animationDuration * 4);
         }
 
         yield return new WaitForFixedUpdate();
