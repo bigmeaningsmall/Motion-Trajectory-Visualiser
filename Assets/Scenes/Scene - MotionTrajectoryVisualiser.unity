@@ -21731,7 +21731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixedFrameRate: 60
-  versionNumber: v1.0.1
+  versionNumber: v1.0.1b
   animationDuration: 0.1
   buttonShakeAmount: 0.25
   buttonShakeStrength: 0.25

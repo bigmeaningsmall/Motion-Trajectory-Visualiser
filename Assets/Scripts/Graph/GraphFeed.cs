@@ -128,9 +128,9 @@ public class GraphFeed : MonoBehaviour{
         hoz += Time.deltaTime;
         // hoz = System.DateTime.Now;
 
-        if (Input.GetKeyDown(KeyCode.C)){
-            StartCoroutine(ClearAll(0.5f));
-        }
+        // if (Input.GetKeyDown(KeyCode.C)){
+        //     StartCoroutine(ClearAll(0.5f));
+        // }
     }
 
     private float SetAxisValue(Vector3 trajectory){
