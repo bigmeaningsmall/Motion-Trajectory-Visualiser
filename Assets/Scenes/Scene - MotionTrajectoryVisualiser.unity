@@ -4982,8 +4982,8 @@ RectTransform:
   m_Children:
   - {fileID: 245702943}
   - {fileID: 1012196769}
-  - {fileID: 2023222270}
   - {fileID: 1133436844}
+  - {fileID: 2023222270}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21731,7 +21731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixedFrameRate: 60
-  versionNumber: v1.0.1b
+  versionNumber: v1.0.2b
   animationDuration: 0.1
   buttonShakeAmount: 0.25
   buttonShakeStrength: 0.25
