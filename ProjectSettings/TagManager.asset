@@ -17,6 +17,7 @@ TagManager:
   - Animate
   - NoAnimate
   - NoScale
+  - Environment
   layers:
   - Default
   - TransparentFX

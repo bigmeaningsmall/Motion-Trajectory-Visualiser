@@ -53,7 +53,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     public Image btnLabels; private bool isOnLabels;
     public Image btnEndEffectors; private bool isOnEndEffectors;
     public Image btnTrails; private bool isOnTrails;
-    public Image btnEnvironment; private bool isOnEnvironment;
+    public Image btnEnvironment; private bool isOnEnvironment = true;
     
     public Image btnUI_Toggle; private bool isOnUI;
     
@@ -116,11 +116,7 @@ public class UI_ManagerSettings : MonoBehaviour{
         OffsetXYZ();
             
         onPosX = this.transform.position.x;
-        // offPosX = onPosX-StaticData.instance.menuOffset;
-        //FOR OFF SCREEN 1080
-        // offPosX = TransformUtilities.GetOffscreenXPosition(gameObject.GetComponent<RectTransform>(), "left")/2;
-        //FOR OFF SCREEN ANY BIG SIZE
-        offPosX = 1400;
+        offPosX = StaticData.instance.menuOffset*2;
         
         
         // UI IS SET A FRAME AFTER START TO ALLOW ALL OBJECTS AND INSTANCES TO BE INITIALISED
@@ -270,6 +266,7 @@ public class UI_ManagerSettings : MonoBehaviour{
     public void OnButtonEnvironment(){
         isOnEnvironment = !isOnEnvironment;
         btnEnvironment.color = GetButtonColour(isOnEnvironment);
+        StartCoroutine(ScaleEnvironment(isOnEnvironment));
     }
     
     #endregion
@@ -381,6 +378,7 @@ public class UI_ManagerSettings : MonoBehaviour{
         OnButtonLabels();
         OnButtonEndEffector();
         OnButtonTrails();
+        OnButtonEnvironment();
         
         OnButtonHandIK();
         OnButtonFootIK();
@@ -443,6 +441,27 @@ public class UI_ManagerSettings : MonoBehaviour{
             }
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public IEnumerator ScaleEnvironment(bool t){
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Environment");
+        Transform[] e = new Transform[gos.Length];
+        for (int i = 0; i < gos.Length; i++){
+            e[i] = gos[i].transform;
+        }
+        
+        for (int i = 0; i < e.Length; i++){
+            if (t){
+                if (e[i].GetComponent<ScaleSaver>()){
+                    e[i].DOScale(e[i].GetComponent<ScaleSaver>().initialScale, StaticData.instance.animationDuration * 2);
+                }
+            }
+            else{
+                e[i].DOScale(0, StaticData.instance.animationDuration * 2);
+            }
+            yield return new WaitForSeconds(0.02f);
+        }
+        yield return new WaitForFixedUpdate();
     }
     
     #endregion
