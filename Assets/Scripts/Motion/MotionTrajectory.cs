@@ -25,8 +25,7 @@ public class MotionTrajectory : MonoBehaviour{
     private Vector3 initialPosition;
     public float velocityThreshold = 0.08f;
     public bool resetPosition = false;
-    
-    
+
     #region Events Subscriptions
 
     private void OnEnable(){

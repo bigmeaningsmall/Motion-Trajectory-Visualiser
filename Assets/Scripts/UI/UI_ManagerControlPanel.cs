@@ -34,7 +34,6 @@ public class UI_ManagerControlPanel : MonoBehaviour{
     #region Events
 
     public delegate void ResetEffectors();
-
     public static event ResetEffectors OnResetEffectors;
 
     #endregion

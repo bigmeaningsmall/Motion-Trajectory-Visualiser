@@ -10,6 +10,9 @@ public class DAO : MonoBehaviour
     
     public string targetFilePath = "";
     public string predictedFilePath = "";
+    
+    public Vector3[] targetVectorData = new Vector3[0];
+    public Vector3[] predictedVectorData = new Vector3[0];
 
     void Awake(){
         if (instance != null) {
@@ -32,7 +35,17 @@ public class DAO : MonoBehaviour
         set { predictedFilePath = value; }
     }
 
+    public Vector3[] TargetData
+    {
+        get{ return targetVectorData; }
+        set{ targetVectorData = value; }
+    }
 
+    public Vector3[] PredictedData
+    {
+        get{ return predictedVectorData; }
+        set{ predictedVectorData = value; }
+    }
     #region General Config
 
     /// <summary>

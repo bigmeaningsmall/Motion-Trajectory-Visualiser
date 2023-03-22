@@ -14,7 +14,7 @@ public class DataReader : MonoBehaviour{
     // List for holding data from CSV reader
     List<Dictionary<string, object>> pointList;
     
-    public Vector3[] targetPosition = new Vector3[0];
+    public Vector3[] vectorData = new Vector3[0];
     
     // Folder of the data from 'Resources'
     public string folderName;
@@ -44,7 +44,12 @@ public class DataReader : MonoBehaviour{
     // Number of rows
     public int rowCount;
 
-    private bool broadcastData = false;
+    //TODO use this to check when reading - when realtime is added needs to set a enum statemachine
+    public bool streamingData = false;
+    //todo - need to check data loaded before class can stream
+    public bool dataLoaded = false;
+    
+    private Coroutine broadcastData;
 
     #endregion
     
@@ -141,34 +146,58 @@ public class DataReader : MonoBehaviour{
         rowCount = pointList.Count;
         
         GetPoints();
+        
+        //SET DATA IN DAO
+        if (trajectoryType == Trajectory.Target){
+            DAO.instance.TargetData = vectorData;
+        }
+        if (trajectoryType == Trajectory.Predicted){
+            DAO.instance.PredictedData = vectorData;
+        }
+        
+        //todo verify data loaded via call back or better method
+        dataLoaded = true;
     }
 
     void GetPoints(){
-        targetPosition = new Vector3[pointList.Count];
+        vectorData = new Vector3[pointList.Count];
         for (var i = 0; i < pointList.Count; i++){
             float x = (Convert.ToSingle(pointList[i][xColumnName]));
             float y = (Convert.ToSingle(pointList[i][yColumnName]));
             float z = (Convert.ToSingle(pointList[i][zColumnName]));
-            targetPosition[i] = new Vector3(x, y, z);
+            vectorData[i] = new Vector3(x, y, z);
         }
     }
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Space) && !broadcastData){
-            broadcastData = true;
-            StartCoroutine(BroadcastData());
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && broadcastData){
-            broadcastData = false;
+        if (dataLoaded){
+            if (Input.GetKeyDown(KeyCode.Space) && !streamingData){
+                streamingData = true;
+                broadcastData = StartCoroutine(BroadcastData());
+            }
+            if (Input.GetKeyDown(KeyCode.S) && streamingData){
+                streamingData = false;
+                StopCoroutine(broadcastData);
+                if (OnTrajectoryEvent != null){
+                    OnTrajectoryEvent(trajectoryType, Vector3.zero);
+                }
+            }
         }
     }
 
     private IEnumerator BroadcastData(){
-        for (int i = 0; i < targetPosition.Length; i++){
-            //Debug.Log(trajectoryType.ToString() + ": " +  targetPosition[i]);
+        for (int i = 0; i < vectorData.Length; i++){
+            // Debug.Log(trajectoryType.ToString() + ": " +  targetPosition[i]);
             yield return new WaitForFixedUpdate();
             if (OnTrajectoryEvent != null){
-                OnTrajectoryEvent(trajectoryType, targetPosition[i]);
+                OnTrajectoryEvent(trajectoryType, vectorData[i]);
+            }
+
+            if (i >= vectorData.Length-1){
+                if (OnTrajectoryEvent != null){
+                    OnTrajectoryEvent(trajectoryType, Vector3.zero);
+                }
+                streamingData = false;
             }
         }
 
